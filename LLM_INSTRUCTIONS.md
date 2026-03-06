@@ -1,6 +1,6 @@
 # Saia Labs — LLM Instructions for Automated Page Creation & Promotion
 
-This document is a reference for LLMs (via cron jobs or other automation) to create new idea landing pages on saialabs.com and promote them across social platforms to gauge product-market fit.
+This document is a reference for LLMs (via Claude Cowork / cron jobs / other automation) to create new idea landing pages on saialabs.com and promote them across social platforms to gauge product-market fit.
 
 ## Project Overview
 
@@ -9,6 +9,20 @@ This document is a reference for LLMs (via cron jobs or other automation) to cre
 - **Repo**: https://github.com/michaelsaia/saialabs-site
 - **Deployment**: Pushing to `main` triggers a GitHub Actions build → deploys to GitHub Pages automatically
 - **Brand**: Saia Labs — builds software, automations, and tools that solve niche problems
+- **Tracking**: All created idea pages are logged to a Notion database (see Part 5)
+
+## Execution Environment
+
+This workflow is designed to run via **Claude Cowork** (Claude in Chrome). You have access to:
+- **Browser**: Navigate to sites, read forum threads, post content, interact with Notion
+- **Terminal/CLI**: Run git commands, edit files, push to GitHub
+- **File system**: Create and modify markdown files in the repo
+
+When executing this workflow:
+1. Use the browser to research ideas (browse Reddit, X, HN)
+2. Use the terminal to create the markdown file, commit, and push
+3. Use the browser to post on social platforms
+4. Use the browser to log the idea in Notion
 
 ## How Idea Pages Work
 
@@ -112,6 +126,13 @@ The page will be live at `saialabs.com/ideas/your-idea-slug` within ~2 minutes.
 
 People on Reddit, HN, and X can smell promotional content instantly. The goal is to start a genuine conversation about the problem, not to pitch a product. You're gauging interest, not selling.
 
+**The #2 rule: NEVER promise anything for free.**
+
+Do not offer free migrations, free trials, free anything on landing pages or in posts. The purpose is to gauge whether people care about the *problem* and would be interested in a *solution*. Promising free stuff attracts the wrong signal — you get signups from people who want free things, not people willing to pay for a real product. Instead:
+- Frame it as "exploring building a solution" or "gauging interest"
+- CTA text should be things like "Get early access", "Stay updated", "Join the waitlist" — NOT "Get it free" or "Free migration"
+- In posts, talk about the problem and ask if others experience it — don't lead with an offer
+
 ### Platform-specific guidelines
 
 #### Reddit
@@ -170,9 +191,9 @@ there has to be a better way to do this
 
 started building an AI tool that reads your exports/CSVs/even screenshots and reformats everything for your new platform
 
-thinking about offering free migrations to get the first users
+exploring whether this is something people actually need or if i'm just salty about my own experience
 
-would anyone actually use this? saialabs.com/ideas/client-migration
+if you've dealt with this: saialabs.com/ideas/client-migration
 ```
 
 **What NOT to do on X:**
@@ -305,8 +326,42 @@ saialabs-site/
 
 ### Verification
 
-After pushing a new idea page, verify:
-1. The GitHub Actions build passes (check the Actions tab)
-2. The page is accessible at `saialabs.com/ideas/{slug}`
-3. The email form renders and submits successfully
-4. The page looks correct on mobile
+After pushing a new idea page, verify using Claude in Chrome:
+1. The GitHub Actions build passes (navigate to the repo Actions tab)
+2. The page is accessible at `saialabs.com/ideas/{slug}` — open it in the browser and confirm it renders
+3. The email form renders and the button is visible
+4. Check on a mobile viewport (use Chrome DevTools responsive mode)
+
+---
+
+## Part 5: Notion Tracking
+
+After creating each idea page and posting it, log it to the Notion database. Use Claude in Chrome to navigate to Notion and create a new entry.
+
+### Database fields to fill
+
+| Field | Value |
+|-------|-------|
+| **Idea Name** | The title from the frontmatter |
+| **Slug** | The file name / URL slug (e.g., `client-migration`) |
+| **URL** | `https://saialabs.com/ideas/{slug}` |
+| **Status** | `Gauging Interest` / `Building` / `Launched` |
+| **Date Created** | Today's date |
+| **Accent Color** | The hex color used |
+| **Posted To** | List of platforms posted to (e.g., Reddit r/SideProject, X, HN) |
+| **Post Links** | URLs of the actual posts made |
+| **Email Signups** | Number (update periodically by checking the Cloudflare Worker API) |
+| **Signal Strength** | `Strong` (10+) / `Moderate` (5-10) / `Weak` (<5) / `Not yet measured` |
+| **Notes** | Any notable comments, feedback, or "I'd pay for this" signals |
+
+### Workflow summary
+
+The full end-to-end workflow for each idea:
+
+1. **Research** — Use Chrome to browse Reddit/X/HN, find recurring pain points
+2. **Validate** — Confirm 3-5 independent instances of the pain point
+3. **Create page** — Write the markdown file in the terminal, commit, push
+4. **Verify** — Open the live URL in Chrome, confirm it renders correctly
+5. **Post** — Use Chrome to post on 1-2 relevant platforms (see Part 3 guidelines)
+6. **Log** — Use Chrome to add the idea to the Notion database
+7. **Monitor** — Check email signups after 48-72 hours, update Notion with results
