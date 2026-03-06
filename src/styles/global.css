@@ -7,9 +7,9 @@
   --color-bg-card-hover: rgba(255, 255, 255, 0.06);
   --color-border: rgba(255, 255, 255, 0.08);
   --color-border-hover: rgba(255, 255, 255, 0.15);
-  --color-text: #e8e8e8;
-  --color-text-muted: #888888;
-  --color-text-dim: #555555;
+  --color-text: #ececec;
+  --color-text-muted: #a3a3a3;
+  --color-text-dim: #6b6b6b;
   --color-accent: #6d5cff;
   --color-accent-hover: #8577ff;
   --color-accent-glow: rgba(109, 92, 255, 0.15);
@@ -49,7 +49,7 @@ body::before {
   color: white;
 }
 
-/* ===== Utility Classes ===== */
+/* ===== Shared Utilities ===== */
 .glass-card {
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
@@ -64,7 +64,6 @@ body::before {
   transform: translateY(-2px);
 }
 
-/* Gradient text utility */
 .gradient-text {
   background: linear-gradient(135deg, var(--color-accent) 0%, #a78bfa 50%, #6d5cff 100%);
   -webkit-background-clip: text;
@@ -89,6 +88,52 @@ body::before {
   );
   background-size: 400% 400%;
   animation: gradient-shift 15s ease infinite;
+}
+
+/* ===== Idea Page Animations (global so they apply across components) ===== */
+@keyframes sl-fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes sl-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes sl-glow-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+@keyframes sl-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes sl-dot-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.sl-fade-up {
+  animation: sl-fade-up 0.7s ease-out both;
+}
+.sl-fade-in {
+  animation: sl-fade-in 0.8s ease-out both;
+}
+.sl-stagger-1 { animation-delay: 0.1s; }
+.sl-stagger-2 { animation-delay: 0.2s; }
+.sl-stagger-3 { animation-delay: 0.35s; }
+.sl-stagger-4 { animation-delay: 0.5s; }
+.sl-stagger-5 { animation-delay: 0.65s; }
+
+/* CTA button glow — global so it works in EmailForm component */
+.sl-cta-glow {
+  box-shadow: 0 0 20px color-mix(in srgb, var(--color-idea-accent, var(--color-accent)) 30%, transparent),
+              0 0 60px color-mix(in srgb, var(--color-idea-accent, var(--color-accent)) 10%, transparent);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.sl-cta-glow:hover {
+  box-shadow: 0 0 30px color-mix(in srgb, var(--color-idea-accent, var(--color-accent)) 50%, transparent),
+              0 0 80px color-mix(in srgb, var(--color-idea-accent, var(--color-accent)) 20%, transparent);
+  transform: translateY(-1px);
 }
 
 /* Focus styles */
