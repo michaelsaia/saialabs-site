@@ -9,7 +9,7 @@ This document is a reference for LLMs (via Claude Cowork / cron jobs / other aut
 - **Repo**: https://github.com/michaelsaia/saialabs-site
 - **Deployment**: Pushing to `main` triggers a GitHub Actions build → deploys to GitHub Pages automatically
 - **Brand**: Saia Labs — builds software, automations, and tools that solve niche problems
-- **Tracking**: All created idea pages are logged to a Notion database (see Part 5)
+- **Tracking**: All created idea pages are logged to the **"PMF Validator"** Notion database
 
 ## Execution Environment
 
@@ -18,15 +18,16 @@ This workflow is designed to run via **Claude Cowork** (Claude in Chrome). You h
 - **Terminal/CLI**: Run git commands, edit files, push to GitHub
 - **File system**: Create and modify markdown files in the repo
 
-When executing this workflow:
-1. Use the browser to research ideas (browse Reddit, X, HN)
-2. Use the terminal to create the markdown file, commit, and push
-3. Use the browser to post on social platforms
-4. Use the browser to log the idea in Notion
+## Account Safety
 
-## How Idea Pages Work
+**CRITICAL: Before posting on any platform, verify you are logged into the correct account.**
 
-Each idea gets its own URL at `saialabs.com/ideas/{slug}`. These are "stealth" landing pages — not linked from the home page — meant to be shared directly on Reddit, X, forums, etc. to gauge interest via email signups.
+| Platform | Account to use | How to verify |
+|----------|---------------|---------------|
+| Reddit | `magellanator3000` | Check the username in the top-right corner or profile dropdown. If it shows any other username, STOP. Do not post. |
+| X | `magellanat0r` | Check the handle shown in the sidebar or profile. If it shows any other handle, STOP. Do not post. |
+
+**If you are logged into Mike's personal account on either platform, do NOT post. Switch accounts first or flag this to Mike.**
 
 ---
 
@@ -34,11 +35,14 @@ Each idea gets its own URL at `saialabs.com/ideas/{slug}`. These are "stealth" l
 
 ### What makes a good idea to validate
 
+Every idea MUST meet ALL of these criteria:
+
 1. **Recurring pain point** — Look for problems people complain about repeatedly in forums, subreddits, and X threads. If the same frustration shows up across multiple posts/threads over weeks, it's real.
 2. **Existing workarounds** — If people are cobbling together spreadsheets, scripts, or multiple tools to solve a problem, there's an opportunity to build a clean solution.
 3. **Narrow audience** — Target specific communities (e.g., "physical therapists switching practice management software" not "healthcare"). Niche = easier to reach, easier to validate.
-4. **Buildable in weeks, not months** — Prefer ideas where a useful MVP could ship in 2-4 weeks. If it requires months of development before anyone can use it, skip it.
-5. **No big incumbents caring** — The best niches are too small for big companies to bother with but painful enough for the people affected.
+4. **Buildable in weeks, not months** — Prefer ideas where a useful MVP could ship in 2-4 weeks with Mike's skillset (Python, React/Expo, Cloudflare Workers, APIs). If it requires months of development before anyone can use it, skip it.
+5. **Clear earning potential** — There must be a plausible path to revenue. People complaining = pain. People saying "I'd pay for this" or spending money on bad workarounds = earning potential.
+6. **No big incumbents caring** — The best niches are too small for big companies to bother with but painful enough for the people affected.
 
 ### Where to find ideas
 
@@ -46,15 +50,15 @@ Each idea gets its own URL at `saialabs.com/ideas/{slug}`. These are "stealth" l
 - X/Twitter: Search for "I wish there was" / "why is there no" / "someone should build"
 - Hacker News: "Ask HN" threads, Show HN comments with feature requests
 - Product Hunt: Read comments on launched products — what are people asking for that doesn't exist?
-- Personal experience: What has Mike complained about or hacked together?
 
 ### Validating before building the page
 
 Before creating a landing page, verify:
-- At least 3-5 independent instances of people expressing this pain point
+- At least 3-5 independent instances of people expressing this pain point (save the thread URLs)
+- Clear signals of willingness to pay or existing spending on workarounds
 - No obvious existing solution that already solves it well
 - The target audience is reachable online (you know which subreddits/forums they're in)
-- A realistic path to building an MVP with existing skills/tools
+- A realistic path to building an MVP in 2-4 weeks
 
 ---
 
@@ -122,22 +126,38 @@ The page will be live at `saialabs.com/ideas/your-idea-slug` within ~2 minutes.
 
 ### General principles
 
-**The #1 rule: Sound like a real person, not a marketer or a bot.**
+**Rule #1: Sound like a real person, not a marketer or a bot.**
 
-People on Reddit, HN, and X can smell promotional content instantly. The goal is to start a genuine conversation about the problem, not to pitch a product. You're gauging interest, not selling.
+People on Reddit and X can smell promotional content instantly. The goal is to start a genuine conversation about the problem, not to pitch a product. You're gauging interest, not selling.
 
-**The #2 rule: NEVER promise anything for free.**
+Match the tone of the community you're posting in. Read how other people write in that subreddit or on that topic on X. Mirror their style — sentence length, vocabulary, level of formality, use of slang. If they're casual and short, be casual and short. If they write paragraphs, it's ok to write paragraphs. Don't be excessively verbose. Don't overexplain. Say what a real person would say, nothing more.
+
+**Rule #2: NEVER promise anything for free.**
 
 Do not offer free migrations, free trials, free anything on landing pages or in posts. The purpose is to gauge whether people care about the *problem* and would be interested in a *solution*. Promising free stuff attracts the wrong signal — you get signups from people who want free things, not people willing to pay for a real product. Instead:
 - Frame it as "exploring building a solution" or "gauging interest"
 - CTA text should be things like "Get early access", "Stay updated", "Join the waitlist" — NOT "Get it free" or "Free migration"
 - In posts, talk about the problem and ask if others experience it — don't lead with an offer
 
+**Rule #3: Curate real engagement, not just self-promotion.**
+
+For every promotional action you take for a Saia Labs idea (a post or comment linking to one of our pages), you MUST also make at least one genuine, non-promotional engagement:
+- Comment helpfully on someone else's post or idea
+- Answer a question in a relevant thread
+- Share a useful resource or insight (not ours)
+
+This builds credibility for the accounts and makes them look like real, active community members — not spam bots. Do this BEFORE posting your promotional content in each session.
+
+**Rule #4: Verify account identity before every post.**
+
+Before posting anything on Reddit or X, confirm you are logged in as the correct account (see Account Safety section above). Never post from Mike's personal accounts.
+
 ### Platform-specific guidelines
 
-#### Reddit
+#### Reddit (post as `magellanator3000`)
 
 **Before posting:**
+- Verify you're logged in as `magellanator3000` (check username in profile dropdown)
 - Read the top 20 posts in the target subreddit. Understand the tone, what gets upvoted, what gets removed.
 - Check subreddit rules. Many ban self-promotion or require specific flair.
 - Look at how others share projects — usually as "I built this" or "would this be useful?" posts.
@@ -148,6 +168,7 @@ Do not offer free migrations, free trials, free anything on landing pages or in 
 - Be honest about the stage: "I'm exploring whether this is worth building" is more authentic than "check out our product"
 - Include the link naturally, not as the main focus: "I put up a quick page if anyone wants to follow along: [link]"
 - Ask a genuine question to invite discussion: "Would you actually use something like this? What's missing?"
+- Keep it the same length as other posts in the sub. Don't write an essay in a sub where people write 3 sentences.
 
 **What NOT to do on Reddit:**
 - Don't use marketing language ("revolutionary", "game-changing", "disrupting")
@@ -156,6 +177,7 @@ Do not offer free migrations, free trials, free anything on landing pages or in 
 - Don't use exclamation marks excessively
 - Don't start with "Hey everyone!" or "Hi [subreddit]!"
 - Don't use emojis in text posts (comments are sometimes ok depending on the sub)
+- Don't be overly verbose — say what you need to say and stop
 
 **Example Reddit post tone:**
 ```
@@ -171,7 +193,10 @@ Curious if anyone else has dealt with this pain point or if I'm just bad at spre
 Early page if anyone's interested: saialabs.com/ideas/client-migration
 ```
 
-#### X / Twitter
+#### X / Twitter (post as `magellanat0r`)
+
+**Before posting:**
+- Verify you're logged in as `magellanat0r` (check handle in sidebar)
 
 **How to write the post:**
 - Keep it conversational and short. Thread format works well.
@@ -180,6 +205,7 @@ Early page if anyone's interested: saialabs.com/ideas/client-migration
 - Third tweet: Link + ask for thoughts
 - Use lowercase, casual tone. Contractions. Short sentences.
 - No hashtags (they look spammy on X now)
+- Match how other people on X talk about similar topics
 
 **Example X thread:**
 ```
@@ -201,36 +227,39 @@ if you've dealt with this: saialabs.com/ideas/client-migration
 - Don't tag random people hoping for engagement
 - Don't use "🚀 Excited to announce..." energy
 - Don't thread more than 3-4 tweets for a simple idea validation
+- Don't be verbose — X rewards brevity
 
-#### Hacker News
+### Non-promotional content
 
-**How to write the post:**
-- HN values technical depth, intellectual honesty, and genuine curiosity
-- "Show HN" format requires a working demo or at minimum a clear explanation
-- For gauging interest, "Ask HN" may be better: "Ask HN: Would you use X?"
-- Be direct, no fluff. HN users skim aggressively.
-- Acknowledge limitations and what you don't know
-- Technical details earn credibility
+To build account credibility, you should also create non-promotional posts. These are full posts (not replies or comments), and they require Mike's approval before posting.
 
-**Example HN post:**
-```
-Title: Ask HN: Is automated client data migration between SaaS platforms a real problem?
+**At the end of each daily run, suggest 1-2 non-promotional post ideas to Mike.** Include:
+- The platform (Reddit or X)
+- The subreddit or topic
+- The draft post text
+- Why it's relevant to the account's overall persona
 
-Body:
-I recently switched practice management platforms and spent weeks manually re-entering client data. The export formats were incompatible, some data was only in PDFs.
+**Types of non-promotional content:**
+- Sharing a useful tool, article, or resource relevant to the communities we post in
+- Asking a genuine question you encountered during research
+- Sharing an observation or insight about a trend in the niche
+- Responding to trending topics in the communities
 
-I'm exploring building a tool that uses LLMs to parse arbitrary export formats and map fields to the target platform's schema. Thinking of offering it free as a growth channel for new platforms.
+**Do NOT post these without Mike's approval. Save them as suggestions.**
 
-Before I invest time: has anyone else hit this problem? Is there an existing solution I'm not finding?
+### Following up on existing ideas
 
-Early landing page: https://saialabs.com/ideas/client-migration
-```
+Not every run needs to produce a new idea. Check on existing ideas first:
 
-**What NOT to do on HN:**
-- Don't use marketing speak — HN will downvote you into oblivion
-- Don't post "Show HN" without something to actually show
-- Don't ask for upvotes or shares
-- Don't respond defensively to criticism — engage thoughtfully
+1. **Check signups** — Hit the Cloudflare Worker API to see if any ideas have new signups
+2. **Check post engagement** — Visit the Reddit/X posts you've made and read new comments
+3. **Double down on traction** — If an idea has momentum (signups coming in, active comments), look for MORE places to post about it:
+   - Find new relevant subreddits where the same pain point is discussed
+   - Search X for people complaining about the same problem and reply naturally (as a comment, not self-promo — just engage with the topic)
+   - If someone asks a question related to our idea, answer helpfully and mention you're exploring a solution
+4. **Update Notion** — Update signup counts, signal strength, and add notes about engagement
+
+**Prioritize doubling down on ideas with traction over creating new ideas.** If something is working, ride the wave.
 
 ### Measuring success
 
@@ -238,7 +267,7 @@ After posting, track:
 - **Email signups** — The primary signal. Check via the Cloudflare Worker API.
 - **Comments/engagement** — Are people adding their own pain points? Asking when it launches? This is strong signal.
 - **Upvotes/likes** — Weak signal but indicates topic resonance.
-- **"I'd pay for this"** — Strongest possible signal. Note these.
+- **"I'd pay for this"** — Strongest possible signal. Note these in Notion.
 
 **Thresholds for proceeding:**
 - 10+ email signups from a single post = strong interest, consider building
@@ -284,10 +313,24 @@ import EmailForm from '../../components/EmailForm.astro';
 
 ### Checking Subscribers
 
-```bash
-curl -H "Authorization: Bearer YOUR_ADMIN_SECRET" \
-  "https://saialabs-email.michaelsaia97.workers.dev/api/subscribers?source=client-migration"
-```
+Use the **Admin Dashboard** at `saialabs.com/admin` to check signup counts for all ideas at once.
+
+**Admin key:** `REPLACE_WITH_ADMIN_SECRET`
+
+> **Mike**: Replace the placeholder above with the actual `ADMIN_SECRET` value you set on the Cloudflare Worker. The bot needs this to access the admin dashboard.
+
+**How to check signups:**
+
+1. Navigate to `https://saialabs.com/admin` in the browser
+2. Enter the admin key in the password field and click "View Dashboard"
+3. The dashboard shows:
+   - **Summary table** — All idea slugs with their signup counts, sorted by count (highest first), with a total at the bottom
+   - **Per-slug details** — Click any slug row to expand and see individual subscriber emails, dates, and countries
+4. Use the **Export CSV** button to download all subscriber data as a CSV file
+
+- The signup count for each slug is what you log in the **Email Signups** column in Notion
+- Use counts to determine **Signal Strength**: Strong (10+), Moderate (5-10), Weak (<5)
+- Sources match the idea's slug (e.g., `client-migration`, `general` for the home page)
 
 ### Writing Tips for Idea Pages
 
@@ -307,6 +350,7 @@ saialabs-site/
 │   │       └── _template.md ← Copy this for new ideas
 │   ├── pages/
 │   │   ├── index.astro      ← Home page (don't modify)
+│   │   ├── admin.astro      ← Admin dashboard (password-protected, noindexed)
 │   │   └── ideas/
 │   │       └── [...slug].astro ← Dynamic route for markdown ideas
 │   ├── layouts/
@@ -334,34 +378,91 @@ After pushing a new idea page, verify using Claude in Chrome:
 
 ---
 
-## Part 5: Notion Tracking
+## Part 5: Notion Tracking (PMF Validator Database)
 
-After creating each idea page and posting it, log it to the Notion database. Use Claude in Chrome to navigate to Notion and create a new entry.
+After creating each idea page and posting it, log it to the **"PMF Validator"** database in Notion. Use Claude in Chrome to navigate to Notion and create a new entry.
 
-### Database fields to fill
+### Database columns
 
-| Field | Value |
-|-------|-------|
-| **Idea Name** | The title from the frontmatter |
-| **Slug** | The file name / URL slug (e.g., `client-migration`) |
-| **URL** | `https://saialabs.com/ideas/{slug}` |
-| **Status** | `Gauging Interest` / `Building` / `Launched` |
-| **Date Created** | Today's date |
-| **Accent Color** | The hex color used |
-| **Posted To** | List of platforms posted to (e.g., Reddit r/SideProject, X, HN) |
-| **Post Links** | URLs of the actual posts made |
-| **Email Signups** | Number (update periodically by checking the Cloudflare Worker API) |
-| **Signal Strength** | `Strong` (10+) / `Moderate` (5-10) / `Weak` (<5) / `Not yet measured` |
-| **Notes** | Any notable comments, feedback, or "I'd pay for this" signals |
+| Column | Type | How to fill it |
+|--------|------|----------------|
+| **Idea Name** | Title | The idea title from the frontmatter (e.g., "Client Migration") |
+| **Idea Description** | Text | 2-3 sentences explaining why you chose this idea. What pain point did you observe? What threads/posts showed the need? Why is it practical to build? What's the earning potential? Be specific — cite the communities and signals you found. |
+| **Research** | Text | Bullet list of the evidence threads/posts you found. Format each as: `[Platform] Subreddit/Topic - "Key quote or summary" - URL`. Example: `[Reddit] r/physicaltherapy - "Spent 3 weeks re-entering client data after switching to Jane App" - https://reddit.com/r/physicaltherapy/comments/abc123` |
+| **Slug** | Text | The kebab-case slug (e.g., `client-migration`) |
+| **URL** | URL | `https://saialabs.com/ideas/{slug}` |
+| **Status** | Select | `Gauging Interest` / `Building` / `Launched` |
+| **Date Created** | Date | Today's date |
+| **Accent Color** | Text | The hex color code (e.g., `#059669`) |
+| **Posted To** | Multi-select | Platforms posted to (e.g., `Reddit`, `X`) |
+| **Post Links** | Text | One link per line, formatted as: `[Platform] r/subreddit or @handle - URL`. Examples below. |
+| **Email Signups** | Number | Current count (update each run by checking the Cloudflare Worker API) |
+| **Signal Strength** | Select | `Strong` (10+) / `Moderate` (5-10) / `Weak` (<5) / `Not yet measured` |
+| **Notes** | Text | Notable comments, "I'd pay for this" signals, feedback themes. One observation per line. |
 
-### Workflow summary
+### Post Links format
 
-The full end-to-end workflow for each idea:
+Always format Post Links as one entry per line, with the platform tag, community/handle, and full URL:
 
-1. **Research** — Use Chrome to browse Reddit/X/HN, find recurring pain points
-2. **Validate** — Confirm 3-5 independent instances of the pain point
-3. **Create page** — Write the markdown file in the terminal, commit, push
-4. **Verify** — Open the live URL in Chrome, confirm it renders correctly
-5. **Post** — Use Chrome to post on 1-2 relevant platforms (see Part 3 guidelines)
-6. **Log** — Use Chrome to add the idea to the Notion database
-7. **Monitor** — Check email signups after 48-72 hours, update Notion with results
+```
+[Reddit] r/physicaltherapy - https://reddit.com/r/physicaltherapy/comments/abc123
+[Reddit] r/SideProject - https://reddit.com/r/SideProject/comments/def456
+[X] @magellanat0r - https://x.com/magellanat0r/status/123456789
+```
+
+This makes it easy to scan which platforms have been covered and click through to each post.
+
+---
+
+## Part 6: Daily Run Workflow
+
+Each daily run should follow this sequence:
+
+### Phase 1: Check existing ideas (always do this first)
+
+1. Open the PMF Validator database in Notion
+2. For each idea with status "Gauging Interest":
+   a. Check email signups via the Cloudflare Worker API
+   b. Visit each post link — read new comments, note engagement
+   c. Update the Notion row: signup count, signal strength, notes
+3. Identify ideas with traction (new signups, active threads, positive comments)
+
+### Phase 2: Double down on traction
+
+For ideas showing momentum:
+1. Search Reddit and X for NEW threads/posts where people are discussing the same pain point
+2. If you find relevant threads:
+   - On Reddit: Leave a helpful comment engaging with the topic. If it's natural, mention you're exploring a solution. Don't force it.
+   - On X: Reply to people discussing the problem. Be conversational. Don't always link — sometimes just engaging is enough.
+3. If there are new relevant subreddits you haven't posted to yet, consider a fresh post tailored to that community
+4. Log any new posts/comments to the Post Links column in Notion
+
+### Phase 3: Community engagement (credibility building)
+
+Before doing any self-promotional posting:
+1. Find 1-2 posts/threads in communities you're active in where you can contribute genuinely
+2. Leave helpful comments, answer questions, or share useful non-Saia-Labs resources
+3. This is not logged to Notion — it's just about building real account history
+
+### Phase 4: New idea research (only if no existing ideas need attention)
+
+If all existing ideas are either stable or dead:
+1. Browse Reddit and X for new recurring pain points
+2. Validate against all criteria in Part 1
+3. If a strong candidate emerges, create the landing page (Part 2)
+4. Post to 1-2 relevant communities (Part 3)
+5. Log to Notion (Part 5)
+
+### Phase 5: End-of-run summary
+
+At the end of each run, prepare a summary for Mike:
+
+1. **Idea status updates** — Which ideas gained signups, which threads are active
+2. **New idea proposals** (if any) — What you found, why it's worth testing
+3. **Suggested non-promotional posts** (1-2) — Draft text for Mike to approve. Include:
+   - Platform and target community
+   - Full draft text
+   - Why it fits the account's persona
+4. **Any flags** — Account issues, subreddit bans, interesting competitor activity
+
+**Do NOT post the non-promotional content suggestions. Present them to Mike for approval.**

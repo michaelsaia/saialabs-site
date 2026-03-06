@@ -7,8 +7,9 @@
  * KV Binding: EMAILS (bound to saialabs-emails namespace)
  *
  * Endpoints:
- *   POST /api/subscribe  — Subscribe an email
- *   GET  /api/subscribers — List emails for a source (requires auth)
+ *   POST /api/subscribe      — Subscribe an email
+ *   GET  /api/subscribers     — List emails for a source (requires auth)
+ *   GET  /api/subscribers/all — List all emails grouped by source (requires auth)
  */
 
 const ALLOWED_ORIGINS = [
@@ -100,9 +101,13 @@ export default {
 
     // GET /api/subscribers?source=general
     if (url.pathname === '/api/subscribers' && request.method === 'GET') {
-      // Simple auth via secret header
+      // Auth via header OR query param (query param enables browser navigation)
       const authHeader = request.headers.get('Authorization');
-      if (!authHeader || authHeader !== `Bearer ${env.ADMIN_SECRET}`) {
+      const authParam = url.searchParams.get('key');
+      const isAuthed =
+        (authHeader && authHeader === `Bearer ${env.ADMIN_SECRET}`) ||
+        (authParam && authParam === env.ADMIN_SECRET);
+      if (!isAuthed) {
         return jsonResponse({ error: 'Unauthorized.' }, 401, request);
       }
 
@@ -126,6 +131,56 @@ export default {
         200,
         request
       );
+    }
+
+    // GET /api/subscribers/all
+    if (url.pathname === '/api/subscribers/all' && request.method === 'GET') {
+      const authHeader = request.headers.get('Authorization');
+      const authParam = url.searchParams.get('key');
+      const isAuthed =
+        (authHeader && authHeader === `Bearer ${env.ADMIN_SECRET}`) ||
+        (authParam && authParam === env.ADMIN_SECRET);
+      if (!isAuthed) {
+        return jsonResponse({ error: 'Unauthorized.' }, 401, request);
+      }
+
+      // List all KV keys (paginate through if needed)
+      const allKeys = [];
+      let cursor = null;
+      do {
+        const listOpts = cursor ? { cursor } : {};
+        const result = await env.EMAILS.list(listOpts);
+        allKeys.push(...result.keys);
+        cursor = result.list_complete ? null : result.cursor;
+      } while (cursor);
+
+      // Fetch all values and group by source
+      const sources = {};
+      let totalCount = 0;
+
+      const values = await Promise.all(
+        allKeys.map(async (key) => {
+          const val = await env.EMAILS.get(key.name);
+          return val ? JSON.parse(val) : null;
+        })
+      );
+
+      for (const entry of values) {
+        if (!entry) continue;
+        const src = entry.source || 'unknown';
+        if (!sources[src]) {
+          sources[src] = { count: 0, subscribers: [] };
+        }
+        sources[src].count++;
+        sources[src].subscribers.push({
+          email: entry.email,
+          timestamp: entry.timestamp,
+          country: entry.country,
+        });
+        totalCount++;
+      }
+
+      return jsonResponse({ totalCount, sources }, 200, request);
     }
 
     return jsonResponse({ error: 'Not found.' }, 404, request);
