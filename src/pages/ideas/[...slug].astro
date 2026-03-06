@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import IdeaLayout from '../../layouts/IdeaLayout.astro';
+
+export async function getStaticPaths() {
+  const ideas = (await getCollection('ideas')).filter((idea) => !idea.id.startsWith('_'));
+  return ideas.map((idea) => {
+    const slug = idea.id.replace(/\.md$/, '');
+    return {
+      params: { slug },
+      props: { idea, slug },
+    };
+  });
+}
+
+const { idea, slug } = Astro.props;
+const { Content } = await idea.render();
+---
+
+<IdeaLayout
+  title={idea.data.title}
+  tagline={idea.data.tagline}
+  description={idea.data.description}
+  features={idea.data.features}
+  cta={idea.data.cta}
+  slug={slug}
+  status={idea.data.status}
+  accentColor={idea.data.accentColor}
+  ogImage={idea.data.ogImage}
+>
+  {idea.body && idea.body.trim().length > 0 && (
+    <section class="py-8 px-6">
+      <div class="max-w-3xl mx-auto prose prose-invert prose-sm">
+        <Content />
+      </div>
+    </section>
+  )}
+</IdeaLayout>

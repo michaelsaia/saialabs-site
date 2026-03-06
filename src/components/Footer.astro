@@ -1,0 +1,35 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-[var(--color-border)] mt-auto">
+  <div class="max-w-6xl mx-auto px-6 py-12">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="text-sm font-semibold tracking-tight">
+          saia<span class="text-[var(--color-accent)]">labs</span>
+        </span>
+        <span class="text-[var(--color-text-dim)] text-sm">&copy; {year}</span>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <a
+          href="https://github.com/michaelsaia"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors text-sm"
+        >
+          GitHub
+        </a>
+        <a
+          href="https://x.com/michaelsaia97"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors text-sm"
+        >
+          X
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
