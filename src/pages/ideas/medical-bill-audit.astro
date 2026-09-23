@@ -1,0 +1,233 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import EmailForm from '../../components/EmailForm.astro';
+
+const title = 'Medical Bill Audit: find the errors in your hospital bill';
+const description =
+  'Upload your hospital bill and insurance EOB. See likely overcharges in plain English, with dollar amounts, and get dispute letters to send. Early access.';
+
+const catches = [
+  {
+    title: 'Duplicate charges',
+    body: 'The same test, drug, or supply billed twice. It happens more than you would think, and it is the easiest money to get back.',
+  },
+  {
+    title: 'Upcoding',
+    body: 'A billing code for a more expensive service than the one you got. For example, a basic visit billed as a complex one.',
+  },
+  {
+    title: 'Illegal balance billing',
+    body: 'Out-of-network charges you may not owe under the No Surprises Act, like an ER visit or an out-of-network doctor at an in-network hospital.',
+  },
+  {
+    title: 'Bill vs. EOB mismatches',
+    body: 'Your hospital says you owe one amount. Your insurer says another. We line them up and show you where they disagree.',
+  },
+];
+
+const steps = [
+  {
+    title: 'Upload your bill and EOB',
+    body: 'Ask the hospital for an itemized bill. Grab the Explanation of Benefits from your insurer. Upload both.',
+  },
+  {
+    title: 'Get a plain-English error report',
+    body: 'See each likely problem, why it looks wrong, and how many dollars are at stake.',
+  },
+  {
+    title: 'Send the dispute letters',
+    body: 'Get letters drafted for the hospital and your insurer, ready for you to review, sign, and send.',
+  },
+];
+
+const stats = [
+  { value: 'Up to 80%', label: 'of medical bills contain errors', source: 'Medical Billing Advocates of America' },
+  { value: '$1,300', label: 'average error on hospital bills over $10,000', source: 'Equifax audit' },
+  { value: '38%', label: 'of patients who fought a bill got it reduced or eliminated', source: 'Patient survey' },
+  { value: '10M+', label: 'surprise bills blocked by the No Surprises Act in its first 9 months', source: 'AHIP and BCBSA' },
+];
+
+const faqs = [
+  {
+    q: 'Is this available now?',
+    a: 'Not yet. We are checking whether enough people want this before we build it. Join the list and you will be first to hear if it launches.',
+  },
+  {
+    q: 'How is this different from hiring a billing advocate?',
+    a: 'Billing advocates are great, but most take 20% to 35% of whatever they save you. This would be DIY software you run yourself. You see the errors, you send the letters, and you keep what you save.',
+  },
+  {
+    q: 'What will it cost?',
+    a: 'We have not set a price. We are gauging interest first. People who join early access will get founding pricing when it launches.',
+  },
+  {
+    q: 'What do I need to use it?',
+    a: 'An itemized bill from the hospital (you can ask for one, they have to give it to you) and the Explanation of Benefits from your insurance company.',
+  },
+  {
+    q: 'Will it guarantee my bill goes down?',
+    a: 'No. It points out charges that look wrong and helps you ask about them. The hospital or insurer decides what to fix. You stay in control the whole way.',
+  },
+];
+---
+
+<BaseLayout title={title} description={description} noindex={true}>
+  <Header minimal />
+
+  <main class="mba-page flex-1 pt-16" style="--color-idea-accent: #14b8a6;">
+    <!-- Hero -->
+    <section class="relative overflow-hidden px-5 pt-12 pb-14 sm:pt-20 sm:pb-20">
+      <div class="absolute inset-0 animated-gradient pointer-events-none" aria-hidden="true"></div>
+      <div class="relative max-w-3xl mx-auto">
+        <p class="sl-fade-up inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] px-3 py-1 text-sm text-[var(--color-text-muted)]">
+          <span class="h-2 w-2 rounded-full bg-[var(--color-idea-accent)]" style="animation: sl-dot-pulse 2s ease-in-out infinite;"></span>
+          Exploring this idea. Early access list open.
+        </p>
+
+        <h1 class="sl-fade-up sl-stagger-1 mt-5 text-4xl sm:text-6xl font-bold tracking-tight leading-[1.1]">
+          Your hospital bill is probably wrong.
+          <span class="block text-[var(--color-idea-accent)]">Find out by how much.</span>
+        </h1>
+
+        <p class="sl-fade-up sl-stagger-2 mt-5 text-lg sm:text-xl text-[var(--color-text-muted)] max-w-2xl">
+          Upload your bill and your insurance EOB. See the charges that look wrong, what they cost you, and get letters to dispute them. No advocate taking a cut.
+        </p>
+
+        <div id="hero-form" class="sl-fade-up sl-stagger-3 mt-8">
+          <EmailForm source="medical-bill-audit" ctaText="Get early access" />
+          <p class="mt-3 text-sm text-[var(--color-text-dim)]">No spam. One email if and when it is ready.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- What it catches -->
+    <section class="px-5 py-14 sm:py-20 border-t border-[var(--color-border)]">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">What it catches</h2>
+        <p class="mt-3 text-[var(--color-text-muted)] max-w-2xl">
+          The four mistakes that cost patients the most, and the ones hardest to spot on your own.
+        </p>
+        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+          {catches.map((item) => (
+            <div class="glass-card p-6">
+              <h3 class="text-xl font-semibold">{item.title}</h3>
+              <p class="mt-2 text-[var(--color-text-muted)]">{item.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="px-5 py-14 sm:py-20 border-t border-[var(--color-border)]">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">How it would work</h2>
+        <ol class="mt-8 grid gap-4 sm:grid-cols-3">
+          {steps.map((step, i) => (
+            <li class="glass-card p-6">
+              <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-idea-accent)]/15 text-[var(--color-idea-accent)] font-bold">
+                {i + 1}
+              </span>
+              <h3 class="mt-4 text-xl font-semibold">{step.title}</h3>
+              <p class="mt-2 text-[var(--color-text-muted)]">{step.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Numbers strip -->
+    <section class="px-5 py-14 sm:py-16 border-t border-[var(--color-border)] bg-white/[0.02]">
+      <div class="max-w-5xl mx-auto grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        {stats.map((stat) => (
+          <div>
+            <p class="text-4xl font-bold text-[var(--color-idea-accent)]">{stat.value}</p>
+            <p class="mt-2">{stat.label}</p>
+            <p class="mt-1 text-sm text-[var(--color-text-dim)]">Source: {stat.source}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="px-5 py-14 sm:py-20 border-t border-[var(--color-border)]">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Questions</h2>
+        <div class="mt-8 space-y-3">
+          {faqs.map((faq) => (
+            <details class="glass-card group">
+              <summary class="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-4 p-5 font-semibold">
+                {faq.q}
+                <span class="text-[var(--color-idea-accent)] text-2xl leading-none transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="px-5 pb-5 text-[var(--color-text-muted)]">{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section id="final-cta" class="px-5 py-16 sm:py-24 border-t border-[var(--color-border)]">
+      <div class="max-w-2xl mx-auto text-center flex flex-col items-center">
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Want this to exist?</h2>
+        <p class="mt-3 text-[var(--color-text-muted)]">
+          Join the early access list. If enough people sign up, we build it, and you get founding pricing.
+        </p>
+        <div class="mt-8 w-full flex justify-center">
+          <EmailForm source="medical-bill-audit" ctaText="Get early access" />
+        </div>
+      </div>
+    </section>
+
+    <footer class="px-5 pt-8 pb-28 sm:pb-10 border-t border-[var(--color-border)]">
+      <p class="max-w-3xl mx-auto text-center text-xs text-[var(--color-text-dim)]">
+        Medical Bill Audit is an idea being explored by Saia Labs. Nothing on this page is legal, medical, or financial advice. It is for general information only.
+      </p>
+    </footer>
+  </main>
+
+  <!-- Sticky mobile CTA -->
+  <div id="mba-sticky" class="fixed inset-x-0 bottom-0 z-40 p-4 sm:hidden border-t border-[var(--color-border)] bg-[var(--color-bg)]/90 backdrop-blur-xl transition-transform duration-300">
+    <a
+      href="#final-cta"
+      class="sl-cta-glow flex min-h-[48px] w-full items-center justify-center rounded-lg font-semibold text-white"
+      style="background: #14b8a6;"
+    >
+      Get early access
+    </a>
+  </div>
+</BaseLayout>
+
+<style>
+  .mba-page {
+    font-size: 17px;
+  }
+  .mba-page summary::-webkit-details-marker {
+    display: none;
+  }
+  #mba-sticky.is-hidden {
+    transform: translateY(100%);
+  }
+</style>
+
+<script>
+  // Hide the sticky CTA while an email form is already on screen.
+  const sticky = document.getElementById('mba-sticky');
+  const targets = ['hero-form', 'final-cta']
+    .map((id) => document.getElementById(id))
+    .filter((el): el is HTMLElement => el !== null);
+
+  if (sticky && 'IntersectionObserver' in window) {
+    const visible = new Set<Element>();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) visible.add(entry.target);
+        else visible.delete(entry.target);
+      });
+      sticky.classList.toggle('is-hidden', visible.size > 0);
+    });
+    targets.forEach((el) => observer.observe(el));
+  }
+</script>
