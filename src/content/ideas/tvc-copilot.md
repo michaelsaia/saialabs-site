@@ -14,4 +14,4 @@ accentColor: "#059669"
 publishedAt: "2026-09-25"
 ---
 
-There's a working demo at https://tvc-copilot.saialabs.com with sample records you can run through the whole flow. It's an early build. We're talking to integrity and records folks at gas operators to see if this is worth turning into a real product. If your team is staring down the 2028 deadline with a backlog of paper records, sign up and tell us what your records actually look like.
+There's a working demo at https://preview.tvc-copilot.saialabs.com with sample records you can run through the whole flow. It's an early build. We're talking to integrity and records folks at gas operators to see if this is worth turning into a real product. If your team is staring down the 2028 deadline with a backlog of paper records, sign up and tell us what your records actually look like.
